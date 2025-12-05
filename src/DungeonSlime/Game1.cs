@@ -7,6 +7,7 @@ namespace DungeonSlime;
 
 public class Game1 : Core
 {
+    private Texture2D _logo;
     public Game1() : base("Dungeon Slime", 1280, 720, false)
     {
 
@@ -22,8 +23,7 @@ public class Game1 : Core
     protected override void LoadContent()
     {
         // TODO: use this.Content to load your game content here
-
-        base.LoadContent();
+        _logo = Content.Load<Texture2D>("images/logo");
     }
 
     protected override void Update(GameTime gameTime)
@@ -41,6 +41,25 @@ public class Game1 : Core
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         // TODO: Add your drawing code here
+        SpriteBatch.Begin();
+
+        SpriteBatch.Draw(
+            _logo,              // texture
+            new Vector2(        // position
+                Window.ClientBounds.Width,
+                Window.ClientBounds.Height) * 0.5f,
+            null,               // sourceRectangle
+            Color.White,        // color
+            0.0f,               // rotation
+            new Vector2(        // origin
+                _logo.Width,
+                _logo.Height) * 0.5f,        
+            1.0f,               // scale
+            SpriteEffects.None, // effects
+            0.0f                // layerDepth
+        );
+
+        SpriteBatch.End();
 
         base.Draw(gameTime);
     }
